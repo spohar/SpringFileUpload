@@ -67,6 +67,11 @@ public class FileUploadServiceImpl implements FileUploadService {
 		}
 	}
 
+	@Override
+	public Path load(String filename) {
+		return rootLocation.resolve(filename);
+	}
+
 	private void writeMetaInfo(String fileName) throws IOException {
 		BasicFileAttributes fileAttributes = Files.readAttributes(this.rootLocation.resolve(fileName),
 				BasicFileAttributes.class);

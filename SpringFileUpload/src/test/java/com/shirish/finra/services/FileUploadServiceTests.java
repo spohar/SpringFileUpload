@@ -1,5 +1,7 @@
 package com.shirish.finra.services;
 
+import static org.assertj.core.api.Assertions.assertThat;
+
 import java.util.Random;
 
 import org.junit.Before;
@@ -26,7 +28,8 @@ public class FileUploadServiceTests {
 	public void saveAndLoad() {
 		service.uploadFile(
 				new MockMultipartFile("foo", "foo.txt", MediaType.TEXT_PLAIN_VALUE, "Hello World".getBytes()));
-		// assertThat(service.load("foo.txt")).exists();
+		assertThat(service.load("foo.txt")).exists();
+		assertThat(service.load("foo_MetaInfo.txt")).exists();
 	}
 
 	@Test(expected = FileUploadException.class)
